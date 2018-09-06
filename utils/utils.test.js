@@ -1,53 +1,60 @@
-const utils = require("./utils");
 const expect = require("expect");
 
-it("should add two numbers", () => {
-  var res = utils.add(3, 4);
-  expect(res)
-    .toBe(7)
-    .toBeA("number");
-});
+const utils = require("./utils");
 
-it("should async add two numbers", done => {
-  utils.asyncAdd(1, 3, sum => {
-    expect(sum)
-      .toBe(4)
-      .toBeA("number");
-    done();
+describe("Utils", () => {
+  describe("#add", () => {
+    it("should add two numbers", () => {
+      var res = utils.add(3, 4);
+      expect(res)
+        .toBe(7)
+        .toBeA("number");
+    });
+
+    it("should async add two numbers", done => {
+      utils.asyncAdd(1, 3, sum => {
+        expect(sum)
+          .toBe(4)
+          .toBeA("number");
+        done();
+      });
+    });
   });
-});
 
-it("should square up a number", () => {
-  var res = utils.square(3);
-  expect(res).toBe(9);
-});
+  describe("#Square", () => {
+    it("should square up a number", () => {
+      var res = utils.square(3);
+      expect(res).toBe(9);
+    });
 
-it("should async square a number", done => {
-  utils.asyncSquare(3, sqr => {
-    expect(sqr)
-      .toBe(9)
-      .toBeA("number");
-    done();
+    it("should async square a number", done => {
+      utils.asyncSquare(3, sqr => {
+        expect(sqr)
+          .toBe(9)
+          .toBeA("number");
+        done();
+      });
+    });
+
+    // it("should divide a number", () => {
+    //   var res = utils.divide(6, 2);
+    //   expect(res).toBe(3);
+    // });
   });
-});
 
-it("should divide a number", () => {
-  var res = utils.divide(6, 2);
-  expect(res).toBe(3);
-});
+  it("should verify first and last name are set", () => {
+    var user = {
+      age: 25,
+      location: "India"
+    };
+    var fullName = "Sagar Kathuria";
 
-it("should verify first and last name are set", () => {
-  var user = {
-    age: 25,
-    location: "India"
-  };
-  var fullName = "Sagar Kathuria";
+    var res = utils.setName(user, fullName);
 
-  var res = utils.setName(user, fullName);
-
-  expect(res)
-    .toInclude({ firstName: "Sagar", lastName: "Kathuria" })
-    .toBeA("object");
+    expect(res)
+      .toInclude({ firstName: "Sagar", lastName: "Kathuria" })
+      .toBeA("object");
+  });
 });
 
 // Just playing around
