@@ -15,3 +15,10 @@ it("should square up a number", () => {
     throw new Error(`Expected 9, but actual is ${res}`);
   }
 });
+
+it("should divide a number", () => {
+  var res = utils.divide(6, 2);
+  if (res !== 3) {
+    throw new Error(`Expected 3, but actual is ${res}`);
+  }
+});
